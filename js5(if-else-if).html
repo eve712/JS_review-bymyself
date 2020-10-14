@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+        <title>JS class review</title>
+        <link rel="stylesheet" href="reset.css" />
+        <style>
+            body {
+                background-color: #555;
+            }
+            pre {
+                background-color: #333;
+                margin: 30px;
+                padding: 20px;
+                color: white;
+                line-height: 1.4;
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            //----------------------------------------------------------------
+            // 두 수 중 큰 수에서 작은 수를 뺀 값을 구해서 출력
+
+            // 변수 선언
+            var x = 31;
+            var y = 17;
+            var diff;
+
+            // ●조건문을 이용해서 변수 x와 y 중에 어떤 수가 큰 지 확인
+            if (x > y)
+                diff = x - y;
+            else
+                diff = y - x;
+
+            document.writeln("diff = " + diff);
+
+            //--------------------------------------
+            // ●일단 빼고 음수일 경우 * -1
+            diff = x - y;
+
+            if (diff < 0) idff *= -1;
+
+            document.writeln("diff = " + diff);
+            //--------------------------------------
+            // ●조건 연산자를 이용해 두 수 중에서 큰 수와 작은 수를 확인
+            var max = (x > y) ? x : y;
+            var min = (x < y) ? x : y;
+
+            diff = max - min;
+            
+            document.writeln("diff = " + diff);
+            //--------------------------------------
+            // ●조건 연산자를 이용해 두 수의 차이를 계산
+            diff = (x > y) ? (x - y) : (y - x);
+
+            document.writeln("diff = " + diff);
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------
+            // 어떤 학생의 점수가 60점 이상이면 합격이고, 60점 미만이면 불합격이다.
+            // 그리고 90점 이상이면 장학금을 받는다.
+            // 학생의 점수에 따라 불합격인지, 장합금을 받을 수 있는지를 출력
+
+            //--------내 풀이--------
+            var score = 52;
+
+            if (score < 60)
+                document.writeln("당신은 불합격입니다.");
+            else if (score >= 90)
+                document.writeln("당신은 장학금을 받습니다.");
+            else
+                document.writeln("당신은 합격입니다.");
+
+            // ▶︎▶︎ 나처럼 풀면 한 문장씩만 나옴
+            // 90점 이상일 경우 장학금을 받는다는 내용만 나가고 합격이라는 말은 출력되지 않음.
+
+            //--------쌤 풀이---------
+            var scr = 93;
+
+            if (scr >= 60) {
+                document.writeln("당신은 합격입니다!");
+                if (scr >= 90)
+                    document.writeln("당신은 장학금을 받습니다!");
+            }
+            else
+                document.writeln("당신은 불합격입니다!");
+            
+            // ▶︎▶︎ 쌤처럼 풀면 90점 이상일 경우 두 문장이 출력됨
+            // 60점 이상이기 때문에 "합격" 출력
+            // 90점 이상이기 때문에 "장학금"도 출력됨
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------
+            // 중첩 조건문: 조건문 안에 조건문을 작성
+            // → 경우의 수를 늘리기 위해 중첩 조건문을 작성한다.
+            // → 이 때 경우의 수를 명확하게 하기 위해 else 절에 조건문을 넣는 것이 일반적이다.
+            var num = 20;
+
+            if (num < 10)
+                document.writeln("num is smaller than 10.");
+            else 
+                if (num > 20)
+                    document.writeln("num is greater than 20.");
+                else
+                    document.writeln("num is between 10 and 20.");
+
+            //-------------------------
+            // 중첩 조건문에서 경우의 수를 명확하게 표현하기 위해 else 절에 들어가는 조건문에서
+            // 개행과 들여쓰기를 정리해서 작성
+            // → 이러한 형태를 if-else-if 구문이라고 한다.
+            var num = 20;
+
+            if (num < 10)
+                document.writeln("num is smaller than 10.");
+            else if (num > 20)
+                document.writeln("num is greater than 20.");
+            else 
+                document.writeln("num is between 10 and 20.");
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------
+            // 어떤 정수가 양수, 0, 음수인지 구분
+            
+            // 변수 선언
+            var num = -8;
+
+            // if-else-if 구문을 이용해 변수 num이 양수인지, 0인지, 음수인지 확인
+            if (num > 0)
+                document.writeln(num + " is a positive number.");
+            else if (num < 0)
+                document.writeln(num + " is a negative number.");
+            else
+                document.writeln(num + " is zero.");
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------
+            // 어떤 자연수가 아래 조건을 만족하면 지정한 값을 출력
+            // - 3의 배수인 경우: "Fizz" 출력
+            // - 5의 배수인 경우: "Buzz" 출력
+            // - 3의 배수이고 5의 배수인 경우: "FizzBuzz" 출력
+            // - 위 조건에 해당하지 않는 경우: 숫자를 그대로 출력
+
+            // 변수 선언
+            var num = 45;
+
+            // if-else-if 구문을 이용해 위 조건을 확인
+            // → if-else-if 구문을 작성할 때는 조건을 검사하는 순서를 신경 써야 한다.
+            //   조건 중에 조건들의 교집합이 있는 경우에는 이 조건을 먼저 검사해야 한다.
+
+            // 3의 배수: 3으로 나누어 떨어지는 자연수
+            // → 3으로 나누었을 때 나머지가 0인 자연수
+            // 5의 배수: 5로 나누어 떨어지는 자연수
+            // → 5로 나누었을 때 나머지가 0인 자연수
+
+            if (num % 3 == 0 && num % 5 == 0)
+                document.writeln("FizzBuzz");
+            else if (num % 3 == 0)
+                document.writeln("Fizz");
+            else if (num % 5 == 0)
+                document.writeln("Buzz");
+            else    
+                document.writeln(num); 
+
+        </script></pre>
+    </body>
+</html>
