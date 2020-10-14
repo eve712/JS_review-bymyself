@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+        <title>JS class exercise</title>
+        <link rel="stylesheet" href="reset.css" />
+        <style>
+            body {
+                background-color: #555;
+            }
+            pre {
+                background-color: #333;
+                margin: 30px;
+                padding: 20px;
+                color: white;
+                line-height: 1.4;
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            // 3의 배수인 경우 "Fizz"
+            // 5의 배수인 경우 "Buzz"
+            // 3의 배수이고 5의 배수인 경우 "FizzBuzz"
+            // 위 조건에 해당하지 않는 경우: 숫자 그대로 출력
+
+            var num = 15;
+
+            if (num % 3 == 0 && num % 5 == 0)
+                document.writeln("FizzBuzz");
+            else if (num % 3 == 0)
+                document.writeln("Fizz");
+            else if (num % 5 == 0)
+                document.writeln("Buzz");
+            else 
+                document.writeln(num);
+                
+        </script></pre>
+    </body>
+</html>
