@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+        <title>JS class review</title>
+        <link rel="stylesheet" href="reset.css" />
+        <style>
+            body {
+                background-color: #555;
+            }
+            pre {
+                background-color: #333;
+                margin: 30px;
+                padding: 20px;
+                border-radius: 15px;
+                color: white;
+                line-height: 1.4;
+            }
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            //----------------------------------------------------------------------
+            // 두 수를 매개변수로 받아 합계를 계산해 반환하는 함수 선언
+            // 선언한 함수를 이용해 두 수의 합계를 구해서 출력
+
+            // 함수 선언
+            function sum(x, y) {
+                return x + y;
+            }
+
+            // 함수도 값이다. 따라서 변수에 대입할 수도 있고, 출력할 수도 있다.
+            document.writeln("sum = " + sum);
+
+            // 식별자 sum은 함수를 나타내므로 sum의 자료형은 function이다. 
+            document.writeln("typeof sum = " + typeof sum);
+
+            // sum 함수의 반환 값을 변수에 대입
+            var value = sum(3, 5);
+            // var value = 8;
+
+            // 변수 value를 출력
+            document.writeln("value = " + value);
+
+            // sum 함수의 반환 값을 출력
+            document.writeln("sum(11, 7) = " + sum(11, 7));
+            // document.writeln("sum(11, 7) = " + 18);
+            
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------------
+            // 인덱스를 전달 받아 그 인덱스에 해당하는 배열 items의 원소를 반환하는 함수 선언
+            // 선언한 함수를 이용해 세 번째 원소를 출력
+
+            // 배열 선언
+            var items = [ "Apple", "Banana", "Candy", "Doll" ];
+
+            // 인덱스를 전달 받아 그 인덱스에 해당하는 배열 items의 원소를 반환하는 함수 선언
+            // → 매개변수: 배열의 인덱스
+            //   반환 값: 그 인덱스에 해당하는 배열 items의 원소
+            var getItem = function (index) {
+                // var index = 2;
+                return items[index];
+                // → return items[2];
+            };
+            // → 변수에 함수를 대입하면 변수의 식별자가 함수의 식별자를 대신한다. 그래서 함수의 식별자를
+            //   생략할 수 있으며, 이러한 함수를 "익명 함수"라고 한다. 
+            document.writeln("getItem = " + getItem);
+
+            // 변수 getItem에는 함수가 대입되어 있으므로 getItem의 자료형은 function이다. 
+            document.writeln("typeof getItem = " + typeof getItem);
+
+            // getItem 함수의 반환 값을 변수에 대입
+            var item = getItem(2);
+
+            // 변수 item 출력
+            document.writeln("item = " + item);
+
+            // getItem 함수의 반환 값을 출력
+            document.writeln("getItem(2) = " + getItem(2));
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------------
+            // ●함수 매개변수
+            // 함수를 매개변수로 받아, 함수 본체에서 매개변수로 전달 받은 함수를 호출
+            function doFunc(func, x, y) {
+                // var func = sum, x = 3, y = 9;
+                // → 126번째 줄에서 doFunc 함수를 호출하면서 인자로 sum, 3, 9를 전달했으니
+                //   매개변수 func는 sum으로, x는 3으로, y는 9로 초기화된다. 
+
+                return func(x, y);
+                // → return sum(3, 9);
+                // → return 12;
+                // → 위 문장에서 func는 함수 sum을 대입하고 있으므로, 위 문장은 sum 함수를 호출하면서
+                //   인자로 3과 9를 전달한다. 
+            }
+
+            // 함수를 호출하면서 인자를 함수에 전달
+            document.writeln("doFunc(sum, 3, 9) = " + doFunc(sum, 3, 9));
+            // → document.writeln("doFunc(sum, 3, 9) = " + 12);
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------------
+            // 문서에 "Hello World!"를 출력하는 함수
+            function hello() {
+                document.writeln("Hello World!");
+            }
+
+            // 함수를 매개변수로 받아, 함수 본체에서 매개변수로 전달 받은 함수를 호출
+            function runFunc(func) {
+                // var func = hello;
+                // var func = function () {...};
+                func();
+            }
+
+            // ▶︎▶︎ hello 함수를 runFunc 함수에 전달해서 실행
+            // → 아래 문장과 같이 runFunc 함수를 호출하면 runFunc 함수의 매개변수 func에는 
+            //   hello 함수가 전달된다. 이것은 변수에 함수를 대입한다는 말이 된다. 
+            //   따라서 변수의 식별자 func를 통해 hello 함수를 호출할 수 있다. 
+            runFunc(hello);
+
+            // ▶︎▶︎ 익명 함수를 runFunc 함수에 전달해서 실행
+            // → 아래 문장과 같이 runFunc 함수를 호출하면 runFunc 함수의 매개변수 func에는
+            //   익명 함수가 전달된다.
+            //   이것은 변수에 함수를 대입한다는 말이 된다. (변수의 식별자가 함수의 식별자를 대신!)
+            //   따라서 변수의 식별자 func를 통해 익명 함수를 호출할 수 있다. 
+            runFunc(function () { document.writeln("Hello World!"); });
+
+            // 익명 함수를 runFunc 함수에 전달해서 실행
+            runFunc(function () {
+                console.log("Show me the money!");
+            });
+
+        </script></pre>
+
+        <pre><script>
+            //----------------------------------------------------------------------
+            // ●배열(array): 같은 유형을 가지는 여러 값들의 집합(객체의 한 종류)
+            //  → 배열 리터럴([])을 이용해서 배열을 생성
+            // ●배열의 원소(itme): 배열에서 값을 저장하는 저장 공간
+            //  → 배열의 식별자와 인덱스 연산자([]), 그 원소를 나타내는 인덱스를 이용해 원소에 접근
+            // ●배열의 인덱스(index): 배열의 원소에 접근하기 위해 사용하는, 0부터 1씩 증가하는 정수
+            // ●배열의 크기(length): 배열에서 원소들의 개수
+            var numbers = [ 1, 2, 3, 4, 5 ];
+
+            // 배열 numbers의 세 번째 원소
+            document.writeln("numbers[2] = " + numbers[2]);
+
+            //------------------------------------------------
+            // ●객체(object): 어떤 대상을 표현하는 여러 값들과 그 값들을 다루는 기능들의 집합
+            //  → 객체 리터럴({})을 이용해서 객체를 생성
+            // ●객체의 속성(property): 객체에서 값을 지정하는 저장 공간
+            //  → ① 객체의 식별자와 속성 접근 연산자(.), 그 속성을 나타내는 키(식별자)를 이용해서 접근
+                    // object.key
+            //  → ② 객체의 식별자와 인덱스 연산자([]), 그 속성을 나타내는 키(문자열)을 이용해서 접근
+                    // object["key"]
+            // ●객체의 키(key): 객체의 속성에 접근하기 위해 사용하는 이름 (문자열 또는 식별자)
+            
+            var potter = {
+                // 속성(property): 객체에서 값을 저장하는 저장 공간
+                firstName: "Harry",
+                "lastName": "Potter",
+                "age": 37,
+
+                // ●메서드(method): 객체의 속성 중에서 함수를 저장하고 있는 속성
+                getFullName: function () {
+                    // return potter.firstName + " " + potter.lastName;
+                    // ✱this 키워드: 이 메서드가 포함되어 있는 객체를 나타내는 키워드
+                    return this.firstName + " " + this.lastName;
+                }
+            };
+
+            // ●속성 접근 연산자(.)
+            //  → 객체의 속성에 접근하기 위해 사용하는 연산자
+            //  → 첫 번째 피연산자는 객체(object), 두 번째 피연산자는 그 객체의 속성(property)
+            
+            // ① 객체의 식별자 potter, 속성 접근 연산자(.), 식별자 형태의 키 firstName을 이용해
+            //   potter 객체의 firstName 속성에 접근   
+            //   → potter.firstName
+            document.writeln("potter.firstName = " + potter.firstName);
+
+            // ② 객체의 식별자 potter, 인덱스 연산자([]), 문자열 형태의 키 "firstName"을 이용해
+            //   potter 객체의 firstName 속성에 접근
+            //   → potter["firstName"]
+            document.writeln("potter[\"firstName\"] = " + potter["firstName"]);
+
+            // ③ potter 객체의 getFullName 메서드를 호출
+            //   → potter.getFullName();
+            document.writeln("Name: " + potter.getFullName());
+            // → document.writeln("Name: " + "Harry Potter");
+
+            // ●객체의 속성에 새로운 값을 대입
+            potter.age = 35;
+
+            // ●potter 객체에 새로운 속성(메서드)를 추가
+            potter.printAge = function () {
+                document.writeln("Age: " + this.age);
+            };
+
+            // potter 객체의 printAge 메서드 호출
+            potter.printAge();
+
+            //------------------------------------------------
+            // JavaScript 프로그램에서 중괄호({})를 사용하는 곳
+            // 1. 블록(복합문)을 만들기 위해
+            // 2. 함수의 본체를 작성하기 위해
+            // 3. 객체를 생성하기 위해
+
+        </script></pre>
+    </body>
+</html>
