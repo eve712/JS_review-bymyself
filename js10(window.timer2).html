@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+        <title>JS class review</title>
+        <link rel="stylesheet" href="reset.css" />
+        <style>
+            body {
+                background-color: #555;
+            }
+            pre {
+                background-color: #333;
+                margin: 30px;
+                padding: 20px;
+                border-radius: 15px;
+                color: white;
+                line-height: 1.4;
+            }
+        </style>
+    </head>
+    <body>
+        <pre><script>
+            //------------------------------------------------------------------
+            // 직사각형을 표현하는 객체
+            var rect = {
+                width: 13,
+                height: 8,
+                getArea: function () {
+                    return this.width * this.height;
+                },
+                printArea: function () {
+                    document.writeln("Area: " + this.getArea());
+                }
+             };
+
+             // 직사각형의 면적 출력
+             document.writeln("area of the rect = " + rect.getArea());
+
+             // printArea 메서드를 이용해 직사각형의 면적 출력
+             rect.printArea();
+
+        </script></pre>
+
+        <pre><script>
+            //------------------------------------------------------------------
+            // 콘솔에 "Hello World!"를 출력하는 함수
+            function sayHello() {
+                console.log("Hello World!");
+            }
+
+            // sayHello 함수 호출
+            sayHello();
+
+            // ● window.setTimeout 메서드로 타이머 등록
+            //   → 두 번째 인자로 지정한 시간이 지난 다음, 첫 번째 인자로 지정한 함수를 실행시켜주는 
+            //     타이머를 등록
+            var timerId = window.setTimeout(sayHello, 2000);
+            //   → window.setTimeout 메서드가 반환하는 값, 즉 등록한 타이머의 ID를 변수 timerId에
+            //     대입
+
+            console.log("SET: timerId = " + timerId);
+
+
+            // ● window.setInterval 메서드로 타이머 등록
+            //   → 두 번째 인자로 지정한 시간마다, 첫 번째 인자로 지정한 함수를 실행시켜주는 타이머를 등록
+            timerId = window.setInterval(function () {
+                console.log("Dream comes true!");
+            }, 3000);
+            //   → window.setInterval 메서드가 반환하는 값, 즉 등록한 타이머의 ID를 변수 timerId에
+            //     대입한다. 이렇게 변수에 지정해놓은 타이머 ID를 이용해 나중에 이 타이머를 해제할 수 있다. 
+
+            console.log("SET: timerId = " + timerId);
+
+
+            // ● window.setTimeout 메서드로 타이머 등록
+            window.setTimeout(function() {
+                console.log("CLEAR: timerId = " + timerId);
+
+                // ● window.clearInterval 메서드로 타이머를 해제
+                //  → 타이머를 해제하기 위해서는, 해제하고자 하는 타이머의 ID를 알고 있어야 한다.
+                //    따라서 타이머를 해제하고자 할 때는, 타이머를 등록하면서 setTimeout메서드 또는 
+                //    setInterval 메서드가 반환하는 값, 등록한 타이머의 ID를 변수에 저장해놓아야 한다. 
+                //  → 여기에서는 62번째 줄에서 등록한 타이머를 해제하고자 한다. 이 타이머를 등록하면서 
+                //    setInterval메서드를 사용했으므로 타이머를 해제할 때는 clearInterval 메서드를 
+                //   사용해야 한다. 
+                window.clearInterval(timerId);
+            }, 10000);
+
+
+        </script></pre>
+
+        <pre><script>
+            //------------------------------------------------------------------
+            // 3초가 지난 다음 "Pay attention!" 문자열을 콘솔 창에 출력
+            // → window.setTimeout 메서드를 이용해 타이머를 등록해서 구현
+
+            // window.setTimeout 메서드
+            // → 매개변수 #1: 지정한 시간이 지난 다음 실행할 기능(function)
+            //   매개변수 #2: 지정한 기능을 실행할 시간(ms)
+            //   반환 값: 등록한 타이머의 ID
+
+            window.setTimeout(function() {
+                console.log("Pay attention!");
+            }, 3000);
+
+            //----------------------------------
+            // 3초마다 "Do your best!" 문자열을 콘솔 창에 출력
+            // → window.setInterval 메서드를 이용해 타이머를 등록해서 구현
+
+            // window.setInterval 메서드
+            // → 매개변수 #1: 지정한 시간마다 실행할 기능(function)
+            //   매개변수 #2: 지정한 기능을 실행할 시간(ms)
+            //   반환 값: 등록한 타이머의 ID
+
+            window.setInterval(function() {
+                console.log("Do your best!");
+            }, 3000);
+
+        </script></pre>
+    </body>
+</html>
