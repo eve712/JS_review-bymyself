@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rolling | JS class exercise</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            background-color: #555;
+            padding: 3em;
+        }
+        #container {
+            margin: 100px auto;
+            border: 5px solid goldenrod;
+            width: 350px;
+            height: 3em;
+            font-size: 1rem;
+            color: white;
+            /* 
+            #container의 height, font-size
+            li 요소의 padding을 em으로 계산하기 어려움... ➔ 피드백 필수!!
+
+            ----●●FEEDBACK●●----
+            1. #container의 height, li 요소의 height를 같게
+            2. li 요소에 line-height를 줘서 요소 간 간격 설정
+               → line-height 속성은 글씨를 포함한 높이이기 때문에 li의 height와 같게.
+            
+            즉, 이 세 가지를 같게 설정하면 됨!!
+            ① #container의 height 
+            ② li 요소의 height
+            ③ li 요소의 line-height
+            ----●●--------●●----
+            
+            */
+            overflow: hidden;
+        }
+        
+        #rolling > li {
+            padding: 1em;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="rolling">
+            <li>1. Time is gold.</li>
+            <li>2. No sweat, No sweet.</li>
+            <li>3. Asking costs nothing.</li>
+            <li>4. Step by step goes a long way.</li>
+            <li>5. You will never know until you try.</li>
+        </ul>
+    </div>
+
+    <script>
+        var rolling = document.getElementById("rolling");
+        var lists = document.querySelectorAll("#rolling > li");
+        var i = 1;
+        window.setInterval(function() {
+            rolling.style.transition = "0.5s";
+            rolling.style.marginTop = -3 * i + "em";
+            i++;
+            i %= lists.length;
+        }, 1500);
+    </script>
+</body>
+</html>
