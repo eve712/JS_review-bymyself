@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class reivew</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            font-size: 2em;
+            background-color: #555;
+            color: #fff;
+        }
+        #container {
+            /* li 요소의 높이만큼 #container 요소의 높이 설정 */
+            height: 2em;
+
+            width: 600px;
+            border: 10px solid goldenrod;
+            margin : 100px auto 0;
+            /* overflow: hidden; */
+        }
+        #rolling {
+            position: relative;
+            top: 0;
+        }
+        #rolling > li {
+            /* #container 요소의 높이만큼 요소의 높이 설정 */
+            height: 2em;
+
+            line-height: 2em;
+            padding-left: 1em;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="rolling">
+            <li>1. Time is gold.</li>
+            <li>2. No sweat, no sweet.</li>
+            <li>3. Asking costs nothing.</li>
+            <li>4. Step by step goes a long way.</li>
+            <li>5. You will never know until you try.</li>
+        </ul>
+    </div>
+
+    <script>
+        //---------------------------------------------------------
+        // 1. 일정한 시간마다
+        // 2. #rolling 요소를 #container 요소의 높이만큼 위로 이동시킨다.
+        // 3. #rolling 요소의 움직임이 끝나면
+        // 4. #rolling 요소에 설정했떤 스타일 속성을 제거하고
+        // 5. #rolling 요소의 첫 번째 자식 요소를 #rolling 요소의 마지막으로 옮긴다.
+
+        //-----------------
+        // 프로그램에서 참조하는 요소 미리 탐색
+        var rolling = document.getElementById("rolling");
+
+        // 1. 일정한 시간마다
+        window.setInterval(function() {
+            // #rolling 요소를 #container 요소의 높이만큼 위로 이동
+            rolling.style.transitionDuration = "400ms";
+            rolling.style.top = "-2em";
+
+            // 3. #rolling 요소의 움직임이 끝나면
+            //    → #rolling 요소는 위에서 설정한 transition 스타일 속성 때문에 400ms에 걸쳐서
+            //      움직이게 된다. 따라서 #rolling 요소의 움직임은 400ms가 지난 후에 끝나게 된다.
+            //    = 400ms가 지난 다음
+            window.setTimeout(function() {
+                // 4. #rolling 요소에 설정했던 스타일 속성을 제거하고
+                //    → 스타일 속성에 빈 문자열을 설정하면 해당 스타일 속성을 제거할 수 있다.
+                // rolling.style.transitionDuration = "",
+                // rolling.style.top = "";
+                
+                // 여기에서는 인라인 스타일에 위 두 스타일 속성만 설정되어 있기 때문에 style 속성을
+                // 제거해도 같은 결과를 얻을 수 있다.
+                rolling.removeAttribute("style");
+
+                // 5. #rolling 요소의 첫 번째 자식 요소를 #rolling 요소의 마지막 요소로 옮긴다.
+                // #rolling 요소의 첫 번째 자식 요소 = rolling.firstElementChild
+                // #rolling 요소의 마지막 자식 요소로 추가 = rolling.appendChild()
+                rolling.appendChild(rolling.firstElementChild); 
+            }, 400);  // window.setTimeout
+        }, 2000);   // window.setInterval
+
+    </script>
+
+
+
+</body>
+</html>
