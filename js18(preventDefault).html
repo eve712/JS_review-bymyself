@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class reivew</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            font-size: 2em;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="hello">Hello World!</h1>
+    <p>
+        <button id="change">CHANGE</button>
+        <button id="toggle">TOGGLE</button>
+    </p>
+    <script>
+        //----------------------------------------------------------
+        // 1. #change 요소를 클릭하면
+        // 2. #hello 요소의 글자 색상을 red, green, blue, gold, red, green, ...으로 설정
+        
+        //------------------------
+        // 프로그램에서 참조하는 요소 미리 탐색
+        var hello = document.getElementById("hello");
+        var colors = [ "red", "green", "blue", "gold"];
+        var i = 0;
+
+        // 1. #change 요소를 클릭하면
+        //    → #change 요소를 표현하는 Element 객체에 click 이벤트 핸들러를 연결해서 구현
+        document.getElementById("change").onclick = function() {
+            // 2. #hello 요소의 글자 색상을 변경
+            // i = 0, 1, 2, 3, 0, 1, ...
+            hello.style.color = colors[i];
+            i++;
+            i %= colors.length;
+        };
+
+    </script>
+
+    <pre id="log"></pre>
+
+    <script>
+        //----------------------------------------------------------
+        // 1. #toggle 요소를 클릭하면
+        // 2. #toggle 요소의 내부 문자가 "TOGGLE"이면
+        // 3. #hello 요소의 글자 색상을 "red"로 설정하고
+        // 4. #toggle 요소의 내부 문자를 "RESET"으로 설정
+        // 5. 그렇지 않으면 = #toggle 요소의 내부 문자가 "TOGGLE"이 아니면
+        // 6. #hello 요소에 설정했던 글자 색상을 제거하고
+        // 7. #toggle 요소의 내부 문자를 "TOGGLE"로 설정
+
+        //-----------------------------------
+        document.getElementById("toggle").onclick = function (event) {
+            if (this.innerHTML == "TOGGLE") {
+                hello.style.color = "red";
+                toggle.innerHTML = "RESET";
+            }
+            else {
+                hello.removeAttribute("style");
+                this.innerHTML = "TOGGLE";
+            }
+        };  // #toggle.onclick
+
+        // ●●이벤트 객체(event object)
+        // → 이벤트가 발생하면 이벤트의 정보와 이벤트와 관련된 기능을 담고 있는 "이벤트 객체"를
+        //   브라우저가 생성한다.
+        //   이 이벤트 객체는 이벤트 핸들러의 인자로 전달되므로 이벤트 핸들러의 매개변수를 통해
+        //   이벤트 핸들러 내에서 사용할 수 있다.
+
+        var log = document.getElementById("log");
+
+        for (var key in event)
+            log.innerHTML += key + " : " + event[key] + "\n";
+
+    </script>
+
+    <ul>
+        <li><a href="http://www.google.com">Google</a></li>
+        <li><a href="http://www.naver.com">Naver</a></li>
+        <li><a href="http://www.daum.net">Daum</a></li>
+        <li><a href="http:www.facebook.com">Facebook</a></li>
+        <li><a href="http://www.twitter.com">Twitter</a></li>
+    </ul>
+
+    <script>
+       //--------------------------------------------------------------------
+       // 1. a 요소를 클릭하면
+       // 2. 새로운 페이지로 이동하지 않도록 하고
+       // 3. href 속성 값을 경고창으로 출력한다.
+       
+       //---------------------------------
+        var links = document.links;
+
+        // 1. a 요소를 클릭하면
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function(event) {
+
+                // 2. 새로운 페이지로 이동하지 않도록 하고
+                //   → a 요소를 클릭했을 때 href 속성에 지정해놓은 URL로 이동하는 것은
+                //     a 요소의 기본 이벤트이다. 따라서 이 기능이 동작하지 않도록 하기 위해
+                //     기본 이벤트를 제거한다.
+                event.preventDefault();
+
+                // 3. href 속성 값을 경고 창으로 출력.
+                alert(this.href);
+            };
+        }
+
+    </script>
+</body>
+</html>
