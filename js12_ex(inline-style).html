@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
+        <title>JS class Exercise</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            body {
+                padding: 3em;
+                font-size: 3em;
+                font-weight: 900;
+                background-color: #555;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="hello">Hello world!</h1>
+        <script>
+            var colors = [ "red", "blue", "green", "gold"];
+            var hello = document.getElementById("hello");
+            var i = 0;
+            window.setInterval(function() {
+                    hello.style.color = colors[i];
+                    i++;
+                    if (i == colors.length)
+                        i = 0;
+            }, 2000);
+        </script>
+    </body>
+</html>
