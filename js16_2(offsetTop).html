@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class review</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="http://www.google.com">Google</a></li>
+        <li><a href="http://www.naver.com">Naver</a></li>
+        <li><a href="http://www.daum.net"></a>Daum</li>
+        <li><a href="http://www.facebook.com"></a>Facebook</li>
+        <li><a href="http://www.twitter.com"></a>Twitter</li>
+    </ul>
+
+    <script>
+        //------------------------------------------------------------
+        // 문서 내의 모든 링크에 target 속성 추가
+
+        // ●문서 내의 링크를 표현하는 요소 탐색
+        //  var links = document.getElementsByTagName("a");
+        //  var link = document.querySelectorAll("a");
+        //  document.links
+
+        // 반복문을 이용해 document.links의 모든 요소들을 순차적으로 조작
+        for (var i = 0; i < document.links.length; i++)
+            // document.links[i].setAttribute("target", "_blank");
+            document.links[i].target = "_blank";
+
+    </script>
+
+    <h1 id="hello">Hello World!</h1>
+
+    <script>
+        //-----------------------------------------------------------
+        // 5초가 지난 다음 #hello 요소가 화면 위로 올라가서 사라지도록 설정
+
+        var hello = document.getElementById("hello");
+
+        window.setTimeout(function() {
+            // #hello 요소가 이동해야 할 거리
+            // = (#hello 요소의 Y축상의 위치) + (#hello 요소의 높이) + (여유분)
+            var distance = hello.offsetTop + hello.offsetHeight + 10;
+
+            hello.style.marginTop = (distance * -1) + "px";
+            hello.style.transition = "1s";
+               
+        }, 5000);
+    </script>
+
+</body>
+</html>
