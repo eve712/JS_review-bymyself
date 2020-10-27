@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class exercise</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            font-size: 2em;
+            background-color: #555;
+            color: #fff;
+        }
+        #container {
+            margin: 100px auto;
+            border: 10px solid goldenrod;
+            height: 2em;
+            width: 600px;
+            padding-left: 1em;
+        }
+        #rolling > li {
+            height: 2em;
+            line-height: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="rolling">
+            <li>1. Time is gold.</li>
+            <li>2. No sweat, no sweet.</li>
+            <li>3. Asking costs nothing.</li>
+            <li>4. Step by step goes a long way.</li>
+            <li>5. You will never know until you try.</li>
+        </ul>
+    </div>
+
+    <script>
+        var rolling = document.getElementById("rolling");
+        var i = 1; 
+        window.setInterval(function() {
+            
+            rolling.style.transition = "0.5s";
+
+            rolling.style.marginTop = (i * -2) + "em";
+            rolling.appendChild(rolling.firstElementChild);
+            rolling.removeAttribute("style");
+            // transition효과를 어떻게 해야할지 모르겠음......
+            
+            //  ----●●FEEDBACK●●----
+            //  1. 일정한 시간마다
+            //  2. #rolling 요소를 #container 요소의 높이만큼 위로 이동시킨다.
+            //  3. #rolling 요소의 움직임이 끝나면!!! ★★★★★
+            //     → transitionDuration을 400ms로 설정하고,
+            //       setTimeout(function, 400ms)로 움직임이 끝나는 시간에 맞춤
+            //  4. #rolling 요소에 설정했떤 스타일 속성을 제거하고
+            //     → setTimeout 메서드 안에서 스타일 속성을 제거
+            //  5. #rolling 요소의 첫 번째 자식 요소를 #rolling 요소의 마지막으로 옮긴다.
+            //     → setTimeout 메서드 안에서 요소 옮김
+            //  ----●●--------●●----
+            
+            i++;
+            i %= 5;
+
+        }, 2000);
+
+    </script>
+
+
+</body>
+</html>
