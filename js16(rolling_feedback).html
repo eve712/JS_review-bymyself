@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rolling | JS class review</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            font-size: 2em;
+            background-color: #555;
+        }
+        /* -------------------------- */
+        #container {
+            width: 600px;
+            border: 10px solid goldenrod;
+            margin: 100px auto;
+
+            /* li 요소 하나만 #container 요소의 영역에 표시되도록 높이 설정 */
+            height: 2em;
+
+            /* overflow: hidden; */
+        }
+
+        #rolling > li {
+            /* li 요소의 높이와 #container 높이를 같게. */
+            height: 2em;
+
+            /* ●●●글자를 포함한 높이! 따라서 height와 같은 2em 지정! */
+            line-height: 2em;
+
+            padding-left: 1em;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="rolling">
+            <li>1. Time is gold.</li>
+            <li>2. No sweat, no sweet.</li>
+            <li>3. Asking costs nothing.</li>
+            <li>4. Step by step goes a long way.</li>
+            <li>5. You will never know until you try.</li>
+        </ul>
+    </div>
+
+    <script>
+        //-----------------------------------------------
+        // 1. 일정한 시간마다
+        // 2. #rolling 요소를 li 요소의 높이만큼 위로 이동시킨다.
+
+        //-----------------------------------------------
+        // 프로그램에서 참조하는 요소를 미리 탐색
+        var rolling = document.querySelector("#rolling");
+
+        // 인덱스 변수(index variable): 일정하게 변하는 값을 표현하는 변수
+        var i = 1;
+
+        // 1. 일정한 시간마다 
+        window.setInterval(function() {
+            // 2. #rolling 요소를 li 요소의 높이만큼 위로 이동시킨다.
+            
+            // 요소의 위치 이동
+            // 1. margin 스타일 속성을 설정
+            // 2. position 스타일 속성을 설정한 후 top, right, bottom, left 스타일 속성 설정
+            // 3. transform 스타일 속성에 translate() 함수를 설정
+
+            // 이 함수가 실행될 때마다 #rolling 요소의 margin-top 스타일 속성을 아래 값으로 설정
+            // margin-top: -2em, -4em, -6em, -8em, 0, -2em, -4em, ...
+            // i = 1, 2, 3, 4, 0, 1, 2, ...
+
+            // 인덱스 변수를 이용해 #rolling 요소의 margin-top 스타일 속성을 아래 값으로 설정
+            // → JavaScript에서 스타일 속성을 설정할 때는 반드시 단위까지 설정!
+            rolling.style.marginTop = (i * -2) + "em";
+
+            // 1500ms가 지난 다음 이 함수가 다시 실행될 때 인덱스 변수 값 증가
+            i++;
+
+            // 인덱스 변수는 무한히 증가하지 않는다.
+            // if(i == 5) i = 0;
+            i %= 5;
+
+        }, 1500);
+
+    </script>
+
+</body>
+</html>
