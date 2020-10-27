@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class review</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            /* 
+            em : relative to parent element 
+                 → 폰트 크기에 따라 요소의 크기가 결정되어야 하는 경우(padding)
+                 → 같은 요소에 폰트사이즈 스타일 속성이 적용되있다면 같은 요소의 폰트사이즈 기준
+            rem : relative to root element (16px)
+                 → 폰트 사이즈에 많이 쓰임
+            */
+            padding: 3em;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="hello">Hello World!</h1>
+    <script>
+        //-------------------------------------------------------------
+        // 5초가 지난 다음 #hello 요소가 1초에 걸쳐서 흐릿하게 사라지도록 한다.
+
+        // 프로그램에서 참조하는 요소를 미리 탐색
+        var hello = document.getElementById("hello");
+        // → 프로그램에서 #hello 요소를 여러 번 참조하기 때문에 미리 찾아두고 변수를 통해 참조한다.
+        //   변수 hello에는 DOM에서 찾은 #hello 요소를 표현하는 Element 객체가 대입된다.
+
+        // 5초가 지난 다음
+        window.setTimeout(function() {
+            // #hello 요소가 1초에 걸쳐서 흐릿하게 사라지도록 한다.
+            // display: none;
+            // visibility: hidden;
+            // opacity: 0;
+
+            // display 스타일 속성은 transition 스타일 속성에 영향을 받지 않는다.
+            hello.style.transition = "1s";
+            hello.style.visibility = "hidden";
+            hello.style.opacity = "0";
+        }, 5000);
+        
+    </script>
+
+    <h2 class="words">Time is gold.</h2>
+    <h2 class="words">No sweat, no sweet.</h2>
+    <h2 class="words">Asking costs nothing.</h2>
+
+    <script>
+        //-------------------------------------------------------------
+        // .words 요소들의 글자 색상을 빨간색으로 설정
+
+        var words = document.getElementsByClassName("words");
+        // → document.getElementsByClassName 메서드가 반환하는 값은 Element 객체들의 배열이다.
+        //   따라서 변수 words에는 .words 요소를 나타내는 Element 객체들의 배열이 대입된다.
+        //   즉 배열의 각 원소가 Element 객체이고, 요소를 조작하기 위해서는 Element 객체를 조작해야 한다.
+
+        // 반복문을 이용해 배열 words의 각 원소, 즉 Element 객체에 순차적으로 접근해서 스타일을 설정
+        for (var i = 0; i < words.length; i++)
+            words[i].style.color = "red";
+
+        //--------------------------------------
+        // 5초가 지난 후 첫 번째 .words 요소의 글자 색상을 빨간색으로, 두 번째 요소 글자 색상을 파란색,
+        // 세 번째 요소의 글자 색상을 녹색으로 설정
+
+        // 요소에 설정할 글자 색상을 배열에 저장
+        var colors = ["red", "blue", "green"];
+
+        window.setTimeout(function() {
+
+            // 반복문을 이용해 배열 words의 각 원소, 즉 Element 객체에 순차적으로 접근해서 스타일 설정
+            for(var i = 0; i < words.length; i++)
+                words[i].style.color = colors[i];
+            
+            // words[0].style.color = colors[0];
+            // words[1].style.color = colors[1];
+            // words[2].style.color = colors[2];
+
+        }, 5000);
+
+    </script>
+
+    <ul>
+        <li><a href="http://www.google.com">Google</a></li>
+        <li><a href="http://www.naver.com">Naver</a></li>
+        <li><a href="http://www.daum.net">Daum</a></li>
+    </ul>
+
+    <script>
+        //-------------------------------------------------------------
+        // HTML 문서 내에 있는 모든 링크를 찾아 그 링크의 참조 URL을 내부 문자 뒤에 추가
+
+        // ●HTML 문서 내에 있는 모든 링크를 찾는다.
+        //   → DOM에서 a태그로 작성된 요소를 찾는다. 
+        //   → document.getElementsTagName 메서드로 DOM에서 a 태그로 작성된 요소를 탐색
+        //   → document.querySelectorAll 메서드로 DOM에서 a태그로 작성된 요소를 탐색
+
+        // ●a 요소의 참조 URL을 참조
+        //   → a 요소를 표현하는 Element 객체의 href 속성을 참조
+        //   → a 요소를 표현하는 Element 객체의 getAttribute 메서드를 이용해 href 속성 값을 참조
+
+        // ●HTML 요소의 내부 문자를 조작
+        //   → Element 객체의 innerHTML 속성을 조작
+
+        var links = document.querySelectorAll("a");
+        // var links = document.getElementsTagName("a");
+        // → document.querySelectorAll 메서드는 Element 객체의 배열을 반환한다.
+        //   따라서 변수 links에는 a 태그로 작성된 요소를 나타내는 Element 객체들의 배열이 대입된다.
+        //   배열 links의 각 원소가 a 태그로 작성된 요소를 나타내는 Element 객체이다.
+
+        // links[0].innerHTML += " (" + links[0].href + ")";
+        // links[1].innerHTML += " (" + links[1].href + ")";
+        // links[2].innerHTML += " (" + links[2].href + ")";
+
+        //  반복문을 이용해 배열 links의 각 원소, 즉 Element 객체에 순차적으로 접근해서 내부 문자 설정
+        for (var i = 0; i < links.length; i++)
+            links[i].innerHTML += " (" + links[i].href + ")";
+
+    </script>
+
+
+
+</body>
+</html>
