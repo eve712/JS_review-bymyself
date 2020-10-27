@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
+        <title>JS class review</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            body {
+                padding: 3em;
+                font-size: 2em;
+            }
+            #circle {
+                width: 400px;
+                height: 400px;
+                line-height: 400px;
+                text-align: center;
+                background-color: navy;
+                color: goldenrod;
+                font-size: 2em;
+                font-weight: 900;
+                margin: 50px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="hello">Hello World!</h1>
+        <script>
+            //----------------------------------------------------------------
+            // #hello 요소의 내부 문자에 "Hello JavaScript!"를 덧붙이기
+
+            // document 객체: 브라우저가 HTML 문서를 읽고 해석해서 만들어놓은 DOM을 표현하는 객체
+            // Element 객체: DOM에서 HTML 요소(element)를 표현하는 객체
+            // Element 객체의 innerHTML 속성: HTML 요소의 내부 HTML 마크업을 표현하는 속성
+
+            // 1. DOM에서 조작하고자 하는 요소를 탐색
+            //    → 조작하고자 하는 요소에 id 속성이 주어져 있으므로 id 속성으로 DOM에서 요소를 찾는다.
+            //      이 때 document.getElementById 메서드를 사용한다.
+            // var hello = document.getElementById("hello");
+
+            // hello.innerHTML = hello.innerHTML + " Hello JavaScrpt!";
+            // → hello.innerHTML = "Hello World!" + " Hello JavaScript!";
+            // → hello.innerHTML = "Hello World! Hello JavaScript!";
+
+            // 위 문장은 복합 대입 연산자(+=)를 사용해서 줄여 쓸 수 있다.
+            // hello.innerHTML += " Hello JavaScript!";
+
+            document.getElementById("hello").innerHTML += " Hello JavaScript!";
+            // → document.getElementById 메서드는 DOM에서 id 속성 값이 "hello"인 요소를 탐색해서 반환한다.
+            //   따라서 메서드를 호출하면, 그 자리에 id 속성 값이 "hello"인 요소를 표현하는 Element 객체가
+            //   들어가게 된다. 따라서 바로 연이어 속성 접근 연산자(.)와 Element 객체의 속성을 사용할 수 있다.
+
+        </script>
+
+        <script>
+            //---------------------------------------------------------------------
+            // #hello 요소의 새로운 i 요소를 덧붙인다. i 요소의 내부 문자는 "Hey! Yo!"로 설정.
+
+            // 1. DOM에서 조작하고자 하는 요소를 탐색하고, innerHTML 속성을 통해 내부 HTML 마크업을 조작
+            document.getElementById("hello").innerHTML += " <i>Hey! Yo!</i>";
+            // → Element 객체의 innerHTML 속성에 태그가 포함된 문자열을 대입하면, DOM에 새로운 요소를
+            //   추가할 수 있다.
+
+        </script>
+
+        <script>
+            //---------------------------------------------------------------------
+            // 1. HTML 요소의 속성(attribute)
+            // 2. CSS 스타일 속성(property)
+            // 3. JavaScript 객체의 속성(property)
+
+            // typeof 200 == "number"
+            // typeof "200" == "string"
+
+        </script>
+
+        <a href="http://www.google.com" id="search">Search engine</a>
+
+        <script>
+            //---------------------------------------------------------------------
+            // #search 요소의 href 속성을 "http://www.naver.com"으로 변경
+
+            // 1. DOM에서 #search 요소를 탐색
+            // var search = document.getElementById("search");
+            var search = document.querySelector("#search");
+            // → document.querySelector 메서드는 DOM에서 주어진 선택자로 찾은 첫 번째 요소를 반환한다.
+            //   따라서 변수 search에는 #search 요소를 표현하는 Element 객체가 대입된다.
+            //   이제 변수 search를 통해 DOM에 있는 #search 요소를 표현하는 Element 객체에 접근할 수 있다.
+
+            // 2. #search 요소의 href 속성(attribute)을 조작
+            //    → 1. Element 객체의 ✱setAttribute 메서드 사용
+            //    → 2. Element 객체의 ✱href 속성(property)을 사용
+            search.setAttribute("href", "http://www.naver.com");
+            search.href = "http://www.naver.com";
+
+        </script>
+
+        <script>
+            //---------------------------------------------------------------------
+            // #hello 요소의 글자 색상을 빨간색으로 설정
+            
+            // 1. DOM에서 #hello 요소를 탐색
+            var hello = document.getElementById("hello");
+
+            // 2. Element 객체의 style 속성을 통해 스타일 속성을 조작
+            //   → Element 객체의 style 속성: 요소의 style 속성(attribute, 인라인 스타일)을 나타내는 속성
+            //   → Element 객체의 style 속성을 조작해서 요소의 인라인 스타일을 설정할 수 있다.
+            //     요소의 인라인 스타일은 요소에 적용된 CSS 블럭 중에서 우선 순위가 가장 높다.
+            //     따라서 다른 CSS 블록에서 지정해놓은 값을 인라인 스타일에서 덮어쓸 수 있다.
+            //   → JavaScript 프로그램에서 스타일시트에 작성해놓은 CSS 블록에 접근할 방법은 없다.
+            //     다만 요소에 적용된 스타일 속성의 계산된 값은 읽어올 수 있다.
+            hello.style.color = "red";
+
+        </script>
+
+        <script>
+            //---------------------------------------------------------------------
+            // 3초가 지난 다음 #hello 요소의 배경색을 "navy"로 설정
+
+            // 1. 3초가 지난 다음
+            //    → window.setTimeout 메서드로 타이머를 등록해서 구현
+            window.setTimeout(function () {
+                // 2. #hello 요소의 배경색을 "darkgray"로 설정
+                // 2.1. DOM에서 #hello 요소를 표현하는 Element 객체를 탐색
+                // 2.2. #hello 요소를 표현하는 Element 객체의 style 속성을 통해 스타일을 설정
+                document.querySelector("#hello").style.backgroundColor = "navy";
+
+            }, 3000);
+        </script>
+
+        <div id="circle">Circle</div>
+
+        <script>
+            //---------------------------------------------------------------------
+            // 2초가 지난 후 #circle 요소의 형태를 원으로 변경
+
+            // 1. 2초가 지난 다음
+            //    → window.setTiemout 메서드로 타이머를 등록해서 구현
+
+            window.setTimeout(function() {
+                document.querySelector("#circle").style.borderRadius = "50%";
+            }, 2000);
+
+        </script>
+    </body>
+</html>
