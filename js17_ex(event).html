@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS class exercise</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            background-color: #555;
+            padding: 3em;
+            font-size: 2em;
+        }
+        #hello {
+            background-color: #444;
+            width: 300px;
+            text-align: center;
+            line-height: 2em;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="hello">Hello World!</h1>
+    <p>
+        <button id="change">CHANGE</button>
+    </p>
+
+    <script>
+        var colors = [ "red", "blue", "green", "gold" ];
+        var btn = document.getElementById("change");
+        var i = 0;
+        btn.onclick = function() {
+            hello.style.color = colors[i];
+            i++;
+            i %= colors.length;
+        };
+    </script>
+</body>
+</html>
