@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            padding: 3em;
+            background-color: #444;
+        }
+        /* 큰 사진 */
+        #container {
+            margin-bottom: 2em;
+        }
+        #container > img {
+            display: block;
+            width: 960px;
+            margin: 0 auto;
+            border: 10px solid white;
+        }
+        /* 썸네일 이미지 목록 */
+        #gallery {
+            /* ●●●li 요소들을 가운데에 배치하기 위해 */
+            text-align: center;
+        }
+        #gallery > li {
+            /* li 요소들을 가운데에 배치하기 위해 */
+            display: inline-block;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        #gallery > li > img {
+            display: block;
+            width: 200px;
+            border: 5px solid white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 큰 사진 -->
+    <div id="container">
+        <img src="https://i.imgur.com/sCdNPP4.png" alt="Photo" id="photo">
+    </div>
+    <!-- 썸네일 이미지 목록 -->
+    <ul id="gallery">
+        <li><img src="https://i.imgur.com/sCdNPP4.png" alt="Thumbnail"></li>
+        <li><img src="https://i.imgur.com/V8NdMmg.png" alt="Thumbnail"></li>
+        <li><img src="https://i.imgur.com/6RMqK5f.png" alt="Thumbnail"></li>
+    </ul>
+    <script>
+        //-------------------------------------------
+        // 1. 썸네일 이미지를 클릭하면
+        // 2. #photo 요소의 사진을 썸네일 이미지의 사진으로 바꾼다.
+        
+        //-------------------------------------------
+        // 프로그램에서 참조하는 요소를 미리 탐색
+        const photo = document.getElementById("photo");
+        const thumbnails = document.querySelectorAll("#gallery > li > img");
+
+        // 1. 썸네일 이미지를 클릭하면
+        //   → 썸네일 이미지를 나타내는 요소에 click 이벤트 핸들러를 연결해서 구현
+        //   → 반복문을 이용해 배열 thumbnails에 저장되어 있는 각 img 요소들에 click 이벤트 핸들러 연결
+        for (let thumbnail of thumbnails) {
+            thumbnail.addEventListener("click", function() {
+                photo.src = this.src;
+            });
+        }
+
+    </script>
+</body>
+</html>
