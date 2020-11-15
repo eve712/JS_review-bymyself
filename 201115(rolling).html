@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>롤링 연습</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            background-color: #444;
+            padding: 3em;
+            font-size: 2em;
+            color: #fff;
+        }
+        #container {
+            width: 600px;
+            border: 10px solid goldenrod;
+            margin: 100px auto; 
+            /* font-size, height를 같게!!! */
+            height: 2em;
+            /* overflow: hidden; */
+        }
+        #rolling {
+            position: relative;
+            top: 0;
+        }
+        #rolling > li {
+            /* li 요소의 높이와 #container 높이를 같게 */
+            height: 2em;
+
+            /* 글 라인을 가운데로 맞춰줌 */
+            /* 글자를 포함한 높이! height와 같은 2em 지정 */
+            line-height: 2em;
+
+            padding-left: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="rolling">
+            <li>1. Time is gold.</li>
+            <li>2. No sweat, no sweet.</li>
+            <li>3. Asking costs nothing.</li>
+            <li>4. Step by step goes a long way.</li>
+            <li>5. You will never know until you try.</li>
+        </ul>
+    </div>
+
+    <script>
+        const rolling = document.getElementById('rolling');
+        
+        window.setInterval(function() {
+
+            rolling.style.transitionDuration = '400ms';
+            rolling.style.top = '-2em';
+
+            window.setTimeout(function() {
+                rolling.removeAttribute('style');
+                rolling.appendChild(rolling.firstElementChild);
+            }, 400);
+
+        }, 1500);
+
+    </script>
+</body>
+</html>
