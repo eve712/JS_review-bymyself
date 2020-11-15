@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            background-color: #444;
+            padding: 3em;
+            font-size: 2em;
+        }
+        #box {
+            width: 300px;
+            height: 300px;
+            background-color: goldenrod;
+            color: navy;
+            font-size: 2em;
+            font-weight: 900;
+            line-height: 300px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            // 이벤트 핸들러: window 객체에 load 이벤트가 발생하면 실행할 기능
+            // → 브라우저가 HTML 문서의 내용을 완전히 읽어 들인 다음 window 객체에서 load 이벤트가
+            //   발생한다. 따라서 Load 이벤트가 발생한 이후에는 DOM이 완전하게 구축된 상태이므로
+            //   문제없이 DOM에 접근할 수 있다.
+
+            const html = document.getElementById("html");
+            html.style.color = "blue";
+            html.nextElementSibling.style.color = "red";
+        });
+    </script>
+    <script>
+        window.addEventListener("load", function() {
+            document.getElementById("hello").addEventListener("click", function() {
+                // (이동할 거리) = (요소의 위치) + (요소의 높이) + (여유분)
+                const distance = this.offsetTop + this.offsetHeight + 10;
+                this.style.transitionDuration = "1s";
+                this.style.transform = "translateY(" + -distance + "px)";
+            });
+        });
+    </script>
+    <script>
+        window.addEventListener("load", function() {
+            const box = document.getElementById("box");
+            
+            box.addEventListener("click", function() {
+                this.style.transitionDuration = "1s";
+                this.style.marginLeft = "600px";
+                
+                window.setTimeout(function() {
+                    box.style.transitionDuration = "1s";
+                    box.style.marginLeft = "0";
+                }, 1000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="html">HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+        <li>Portfolio</li>
+    </ul>
+
+    <h1 id="hello">Hello World!</h1>
+
+    <div id="box">BOX</div>
+</body>
+</html>
